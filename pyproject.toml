@@ -30,4 +30,3 @@ plotly = "^5.8.0"
 
 [tool.poetry.group.dev.dependencies]
 tox = "^3.27.1"
-

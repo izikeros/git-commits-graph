@@ -2,9 +2,9 @@ import click
 import git
 import matplotlib.pyplot as plt
 import pandas as pd
-
 from git_commits_graph.config import DEFAULT_STYLE
-from git_commits_graph.plotters import plot_changes, plot_total_lines
+from git_commits_graph.plotters import plot_changes
+from git_commits_graph.plotters import plot_total_lines
 
 
 @click.command()
@@ -14,7 +14,10 @@ from git_commits_graph.plotters import plot_changes, plot_total_lines
     "-s", "--style", default=DEFAULT_STYLE, help="matplotlib plotting style to use."
 )
 @click.option(
-    "-c", "--changes", is_flag=True, help="plot timeline of both added and removed lines."
+    "-c",
+    "--changes",
+    is_flag=True,
+    help="plot timeline of both added and removed lines.",
 )
 @click.option(
     "-t", "--total-lines", is_flag=True, help="plot lines count time evolution."
@@ -48,12 +51,12 @@ def main(
         exit()
 
     git_graph(
-        git_dir,
-        branch,
-        total_lines,
-        changes,
-        log_scale,
-        style,
+        git_dir=git_dir,
+        branch=branch,
+        total_lines=total_lines,
+        changes=changes,
+        log_scale=log_scale,
+        style=style,
         aggregate_by=aggregate_by,
     )
 
@@ -70,7 +73,9 @@ def git_graph(
     # TODO: KS: 2022-06-06: Fetch commits from the github repo without cloning it.
     #       see: https://stackoverflow.com/a/64561416/3247880
 
-    git_dir, repo = get_git_repo(changes, git_dir, total_lines)
+    git_dir, repo = get_git_repo(
+        changes=changes, git_dir=git_dir, total_lines=total_lines
+    )
     commits = fetch_commits(branch, repo)
 
     plt.style.use(style)

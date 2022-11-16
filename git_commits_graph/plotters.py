@@ -3,8 +3,9 @@ import os
 from typing import Optional
 
 import pandas as pd
+from git_commits_graph.config import FIGSIZE
+from git_commits_graph.config import XTICKS_FMT
 from matplotlib import pyplot as plt
-from git_commits_graph.config import FIGSIZE, XTICKS_FMT
 
 
 def plot_changes(commits, git_dir: str, log_scale: bool, aggregate_by: Optional[str]):

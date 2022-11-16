@@ -11,7 +11,7 @@ $ pip3 install git-commits-graph
 or pipx to install in isolated environment:
 ```sh
 $ pipx install git-commits-graph
-```   
+```
 
 ## Usage
 plot timeline of both added and removed lines in your repo:
