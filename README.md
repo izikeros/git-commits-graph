@@ -16,16 +16,15 @@ $ pipx install git-commits-graph
 ## Usage
 plot timeline of both added and removed lines in your repo:
 ```sh
-```shell
 $ git-commits-graph your-repo-path -c
 ```
-![changes](changes.jpg)
+![changes](https://github.com/izikeros/git-commits-graph/raw/main/changes.jpg)
 
 plot lines count evolution in time.
 ```shell
 $ git-commits-graph your-repo-path -t
 ```
-![lines](lines.jpg)
+![lines](https://github.com/izikeros/git-commits-graph/raw/main/lines.jpg)
 to se all options:
 ```
 $ git-commits-graph --help
