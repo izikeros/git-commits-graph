@@ -25,7 +25,7 @@ plot lines count evolution in time.
 $ git-commits-graph your-repo-path -t
 ```
 ![lines](https://github.com/izikeros/git-commits-graph/raw/main/lines.jpg)
-to se all options:
+to see all options:
 ```
 $ git-commits-graph --help
 ```
