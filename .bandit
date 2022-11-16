@@ -1,0 +1,3 @@
+[bandit]
+targets: ./git_commits_graph, ./tests
+skips: B101

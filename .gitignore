@@ -1,0 +1,15 @@
+.idea
+.code
+/build
+/dist
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.DS_Store
+*/__pycache__/
+*/.ipynb_checkpoints/
+.idea/
