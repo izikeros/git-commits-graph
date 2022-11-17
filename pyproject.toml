@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "git-commits-graph"
-version = "0.1.2"
+version = "0.1.3"
 description = "Display graph of changes in number of lines in project or changed lines"
 repository = "https://github.com/izikeros/git-commits-graph"
 authors = ["Krystian Safjan <ksafjan@gmail.com>"]
