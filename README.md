@@ -1,4 +1,10 @@
 # Git commits graph
+![](https://img.shields.io/pypi/v/git-commits-graph.svg)
+![](https://img.shields.io/pypi/pyversions/git-commits-graph.svg)
+![](https://img.shields.io/pypi/l/fgit-commits-graph.svg)
+![](https://img.shields.io/pypi/dm/git-commits-graph.svg)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/izikeros/git-commits-graph/main.svg)](https://results.pre-commit.ci/latest/github/izikeros/git-commits-graph/main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/081a20bb8a5201cd8faf/maintainability)](https://codeclimate.com/github/izikeros/git-commits-graph/maintainability)
 
 Display plot of changes in repo - count of lines or changed lines
 
