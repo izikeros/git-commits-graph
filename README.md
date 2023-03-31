@@ -39,6 +39,8 @@ $ git-commits-graph --help
 ```
 Usage: git-commits-graph [OPTIONS] GIT_DIR
 
+  Plot git commits timeline main function.
+
 Options:
   -b, --branch TEXT               git repository branch to browse.
   -s, --style TEXT                matplotlib plotting style to use.
@@ -50,7 +52,10 @@ Options:
   -l, --log-scale                 aggregate by day
   -a, --list-available-plot-styles
                                   list available plot styles and exit.
+  -e, --engine TEXT               plotting engine to use (matplitlib | plotly)
+  -o, --output-file TEXT          output file name (for plotly backend)
   --help                          Show this message and exit.
+
 ```
 
 
