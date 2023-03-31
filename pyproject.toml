@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "git-commits-graph"
-version = "0.2.1"
+version = "0.2.2"
 description = "Display graph of changes in number of lines in project or changed lines"
 #authors = [{name="Krystian Safjan", email="ksafjan@gmail.com"}]
 authors = ["Krystian Safjan <ksafjan@gmail.com>"]
@@ -33,6 +33,22 @@ mock = "^5.0.1"
 
 [tool.poetry.group.dev.dependencies]
 tox = "^3.7.0"
+
+[project]
+# status beta
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Version Control :: Git",
+    "Topic :: Software Development :: Version Control :: Git :: Graph",
+    "Topic :: Software Development :: Version Control :: Git :: Visualization",
+    ]
 
 [project.urls]
 "Source" = "https://github.com/izikeros/git-commits-graph"
