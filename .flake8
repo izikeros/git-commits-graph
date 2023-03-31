@@ -37,9 +37,6 @@ ignore =C, T003, M502, N802, F405, T001, D100, D101, D104, D105, D107
 
 #select = B
 
-# Do not expect extensive documentation in tests
-extend-ignore = D100,D101,D102,D103 ./tests/*
-
 exclude =
     .tox,
     .git,
@@ -52,7 +49,7 @@ exclude =
     *.pyc,
     .git,
     __pycache__,
-    test_*.py
+    tests
 ;enable docstrings for tests eventually
 
 max-line-length = 130
