@@ -9,7 +9,7 @@ from git_commits_graph.plotters import plot_changes
 from git_commits_graph.plotters import plot_changes_px
 from git_commits_graph.plotters import plot_total_lines
 from git_commits_graph.plotters import plot_total_lines_px
-
+from tqdm.auto import tqdm
 
 @click.command()
 @click.argument("git_dir", required=True)
@@ -155,7 +155,7 @@ def fetch_commits(branch, repo):
     """Fetch commits from the git repository."""
     commits = []
     try:
-        for i in reversed(list(repo.iter_commits(rev=branch))):
+        for i in tqdm(reversed(list(repo.iter_commits(rev=branch)))):
             stat = i.stats.total
             commits.append(
                 [
