@@ -7,3 +7,6 @@ XTICKS_FMT = "%b %Y"
 
 # bmh | fivethirtyeight | seaborn-whitegrid | seaborn-darkgrid | seaborn-ticks
 DEFAULT_STYLE = "fivethirtyeight"
+DEFAULT_BACKEND = "matplotlib"
+DEFAULT_OUTPUT_FILE = "out.html"
+MAX_NUM_BARS = 200

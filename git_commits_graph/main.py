@@ -2,9 +2,13 @@ import click
 import git
 import matplotlib.pyplot as plt
 import pandas as pd
+from git_commits_graph.config import DEFAULT_BACKEND
+from git_commits_graph.config import DEFAULT_OUTPUT_FILE
 from git_commits_graph.config import DEFAULT_STYLE
 from git_commits_graph.plotters import plot_changes
+from git_commits_graph.plotters import plot_changes_px
 from git_commits_graph.plotters import plot_total_lines
+from git_commits_graph.plotters import plot_total_lines_px
 
 
 @click.command()
@@ -35,6 +39,14 @@ from git_commits_graph.plotters import plot_total_lines
     is_flag=True,
     help="list available plot styles and exit.",
 )
+@click.option(
+    "-e",
+    "--engine",
+    is_flag=False,
+    default=DEFAULT_BACKEND,
+    help="plotting engine to use (matplitlib | plotly)",
+)
+@click.option("-o", "--output-file", help="output file name (for plotly backend)")
 def main(
     git_dir,
     branch,
@@ -44,8 +56,10 @@ def main(
     style,
     list_available_plot_styles,
     aggregate_by,
+    engine="matplotlib",
+    output_file=DEFAULT_OUTPUT_FILE,
 ):
-
+    """Plot git commits timeline main function."""
     if list_available_plot_styles:
         print(plt.style.available)
         exit()
@@ -58,6 +72,8 @@ def main(
         log_scale=log_scale,
         style=style,
         aggregate_by=aggregate_by,
+        backend=engine,
+        output_file=output_file,
     )
 
 
@@ -69,35 +85,51 @@ def git_graph(
     log_scale=False,
     style=DEFAULT_STYLE,
     aggregate_by=None,
+    backend=DEFAULT_BACKEND,
+    output_file=None,
 ):
-    # TODO: KS: 2022-06-06: Fetch commits from the github repo without cloning it.
+    """Plot git commits timeline."""
+    # TODO: KS: 2022-06-06: Fetch commits from the GitHub repo without cloning it.
     #       see: https://stackoverflow.com/a/64561416/3247880
 
     git_dir, repo = get_git_repo(
         changes=changes, git_dir=git_dir, total_lines=total_lines
     )
-    commits = fetch_commits(branch, repo)
+    commits = fetch_commits(branch, repo)  # this might take a long time
 
     plt.style.use(style)
+
+    if backend == "plotly":
+        func_total = plot_total_lines_px
+        func_changes = plot_changes_px
+    elif backend == "matplotlib":
+        func_total = plot_total_lines
+        func_changes = plot_changes
+    else:
+        raise ValueError(f"Unknown backend: {backend}")
+
     if total_lines:
-        plot_total_lines(
+        func_total(
             commits=commits,
             git_dir=git_dir,
             log_scale=log_scale,
             aggregate_by=aggregate_by,
+            output_file=output_file,
         )
         plt.show()
     if changes:
-        plot_changes(
+        func_changes(
             commits=commits,
             git_dir=git_dir,
             log_scale=log_scale,
             aggregate_by=aggregate_by,
+            output_file=output_file,
         )
         plt.show()
 
 
 def get_git_repo(changes, git_dir, total_lines):
+    """Get git repository object."""
     git_dir = git_dir.strip('"').strip("'")
     try:
         repo = git.repo.Repo(git_dir)
@@ -120,6 +152,7 @@ def get_git_repo(changes, git_dir, total_lines):
 
 
 def fetch_commits(branch, repo):
+    """Fetch commits from the git repository."""
     commits = []
     try:
         for i in reversed(list(repo.iter_commits(rev=branch))):
@@ -146,6 +179,7 @@ def fetch_commits(branch, repo):
 
 
 def prepare_commits_dataframe(commits):
+    """Make DataFrame from commits list."""
     commits = pd.DataFrame(commits, columns=["date", "added", "removed"])
     commits["delta"] = commits["added"] - commits["removed"]
     commits.date = pd.to_datetime(commits.date)
