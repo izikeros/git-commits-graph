@@ -11,6 +11,7 @@ from git_commits_graph.plotters import plot_total_lines
 from git_commits_graph.plotters import plot_total_lines_px
 from tqdm.auto import tqdm
 
+
 @click.command()
 @click.argument("git_dir", required=True)
 @click.option("-b", "--branch", default=None, help="git repository branch to browse.")
