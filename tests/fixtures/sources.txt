@@ -1,0 +1,4 @@
+1. coin_commander
+2. dotfiles
+3. freqrade
+4. vectorbtpro
